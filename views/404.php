@@ -1,0 +1,1 @@
+<img src="assets/images/404.jpg" class="img-fluid" alt="Error 404. Page not found">
