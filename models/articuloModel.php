@@ -84,14 +84,15 @@ class articuloModel
         }
     }
 
-    public function editar($cod_articulo, $arrayDatos): bool{
-        $sql = "UPDATE articulos SET nombre = :nombre, descripcion = :descripcion, precio = :precio, descuento = :descuento, iva = :iva WHERE cod_articulo = {$cod_articulo};";
+    public function editar($arrayDatos): bool{
+        $sql = "UPDATE articulos SET nombre = :nombre, descripcion = :descripcion, precio = :precio, descuento = :descuento, iva = :iva WHERE cod_articulo = :cod_articulo;";
         $array = [
             ":nombre" => $arrayDatos["nombre"],
             ":descripcion"=> $arrayDatos["descripcion"],
             ":precio"=> $arrayDatos["precio"],
             ":descuento"=> $arrayDatos["descuento"],
-            ":iva" => $arrayDatos["iva"]
+            ":iva" => $arrayDatos["iva"],
+            ":cod_articulo" => $arrayDatos["cod_articulo"]
         ];
         try {
             $sentencia = $this->conexion->prepare($sql);

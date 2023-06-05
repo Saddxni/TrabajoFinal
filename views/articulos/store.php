@@ -2,7 +2,7 @@
 $ruta = (file_exists("controllers/articulosController.php")) ? "" : "../../";
 require_once $ruta . "controllers/articulosController.php";
 
-if (!isset($_REQUEST["nombre"])) header('Location:index.php?accion=crear&tabla=articulos');
+if (!isset($_REQUEST["nombre"]) || !isset($_REQUEST["cod_articulo"])) header('Location:index.php?accion=crear&tabla=articulos');
 
 $cod_articulo = ($_REQUEST["cod_articulo"]) ?? ""; 
 
@@ -13,6 +13,7 @@ $arrayArticulo = [
     "descuento" => $_REQUEST["descuento"],
     "iva" => $_REQUEST["iva"],
     "imagen" => $_FILES["imagen"],
+    "cod_articulo" => $cod_articulo
 ];
 
 $controlador = new ArticulosController();

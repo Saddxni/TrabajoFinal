@@ -128,7 +128,6 @@ class PedidoModel
 
     public function search(string $tabla, string $campo, string $metodoBusqueda, string $dato): array
     {
-
         switch ($metodoBusqueda) {
             case "empieza":
                 $arrayDatos = [":dato" => "$dato%"];

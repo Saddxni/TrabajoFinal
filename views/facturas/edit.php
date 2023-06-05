@@ -3,9 +3,11 @@ $ruta = (file_exists("controllers/facturasController.php")) ? "" : "../../";
 require_once $ruta . "controllers/facturasController.php";
 $controlador = new facturasController();
 
-if (isset($_REQUEST["cod_factura"])) {
+if (!isset($_REQUEST["cod_factura"])) header("Location: index.php");
+
   $cod_factura = $_REQUEST["cod_factura"];
   $datosFactura = $controlador->buscar("facturas", "cod_factura", "igual", $cod_factura);
+  if($datosFactura == []) header("Location:index.php");
   $datosFactura = $datosFactura[0];
 ?>
   <form id="formulario">
@@ -34,8 +36,3 @@ if (isset($_REQUEST["cod_factura"])) {
     </div>
     <button type="button" id="modificar" class="btn btn-primary">Modificar Albaran</button>
   </form>
-
-
-<?php
-}
-?>

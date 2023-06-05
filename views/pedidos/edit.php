@@ -7,9 +7,11 @@ $ruta = (file_exists("controllers/articulosController.php")) ? "" : "../../";
 require_once $ruta . "controllers/articulosController.php";
 $controladorArticulos = new articulosController();
 
-if (isset($_REQUEST["idPedido"])) {
+if (!isset($_REQUEST["idPedido"])) header("Location: index.php");
+
   $id = $_REQUEST["idPedido"];
   $datosPedido = $controlador->buscar("pedidos", "cod_pedido", "igual", $id);
+  if($datosPedido == []) header("Location: index.php");
   $datosPedido = $datosPedido[0];
   $arrayArticulos = $controladorArticulos->listar();
 ?>
@@ -52,10 +54,4 @@ if (isset($_REQUEST["idPedido"])) {
       </table>
     </div>
     <button type="button" id="modificar" class="btn btn-primary">Modificar Albaran</button>
-
   </form>
-
-
-<?php
-}
-?>

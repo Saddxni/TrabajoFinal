@@ -18,8 +18,6 @@ class ArticulosController
         $_SESSION["errores"] = [];
         $_SESSION["datos"] = [];
 
-
-
         //campos NO VACIOS
         $arrayNoNulos = ["nombre", "descripcion", "precio", "descuento", "iva"];
         $nulos = HayNulos($arrayNoNulos, $arrayArticulo);
@@ -31,7 +29,6 @@ class ArticulosController
         }
 
         //Comprobamos los datos numéricos
-
         //Es numérico
         if (contieneSoloNumeros($arrayArticulo["precio"])) {
             $error = true;
@@ -135,7 +132,7 @@ class ArticulosController
     {
         $errores = [];
         //MONTAR SISTEMA DE ERRORES
-        $modificacion = $this->model->editar($cod_articulo, $arrayArticulo);
+        $modificacion = $this->model->editar($arrayArticulo);
         $respuesta["ok"] = false;
         if ($modificacion) {
             $respuesta["ok"] = true;
@@ -151,6 +148,7 @@ class ArticulosController
 
         echo json_encode($respuesta);
     }
+
 
     public function cambiarEstado($id, $estado)
     {

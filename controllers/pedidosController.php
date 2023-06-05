@@ -12,7 +12,6 @@ class PedidosController
 {
     private $model;
     private $clienteModel;
-    private $lineaPedidoModel;
 
     public function __construct()
     {
@@ -109,6 +108,7 @@ class PedidosController
 
     public function buscar(string $tabla, string $campo, string $metodoBusqueda, string $texto): array
     {
+        var_dump($texto);
         $resultado = $this->model->search($tabla, $campo, $metodoBusqueda, $texto);
         return $resultado;
     }
